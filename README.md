@@ -42,9 +42,9 @@ Em breve.
 https://github.com/users/GuilhermeAlvesTeixeira/projects/4
 
 ## Requisitos Funcionais
- Código    | Descrição                                                 | Prioridade | Estado | 
-|-----------|-----------------------------------------------------------|------------|-----------|
-| **RF001** | O programa deve receber parâmetros no terminal.           | Alta       | Em desenvolvimento |
-| **RF002** | O programa deve converter decimal para binário.           | Alta       | Em desenvolvimento |
+ Código    | Descrição                                                 | Prioridade | Estado             | 
+|-----------|-----------------------------------------------------------|------------|--------------------|
+| **RF001** | O programa deve receber parâmetros no terminal.           | Alta       | Concluído          |
+| **RF002** | O programa deve converter decimal para binário.           | Alta       | Concluído          |
 | **RF003** | O programa deve converter de binário para decimal.        | Alta       | Em desenvolvimento |
 | **RF001** | O programa deve exibir mensagem de ajuda ao usar `--help`. | Média      | Em desenvolvimento |
