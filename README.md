@@ -7,8 +7,8 @@ Aplicação simples em **C++** para conversão de números entre decimal e biná
 ## Sobre
 Este projeto foi desenvolvido como prática de programação em C++.  
 Ele permite converter:
-- Decimal → Binário (`--dec2bin`)
-- Binário → Decimal (`--bin2dec`)
+- Decimal → Binário (`--dec2bin` ou `-b`)
+- Binário → Decimal (`--bin2dec` ou `-d`)
 
 ---
 

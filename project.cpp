@@ -18,8 +18,8 @@ void _help() {
               << "  ./a.out [--parametros] [numero]\n\n";
 
     std::cout << GREEN << "Parâmetros:\n" << RESET
-              << "  " << YELLOW << "--dec2bin" << RESET << "   Converte decimal para binário\n"
-              << "  " << YELLOW << "--bin2dec" << RESET << "   Converte binário para decimal\n"
+              << "  " << YELLOW << "--dec2bin ou -b" << RESET << "   Converte decimal para binário\n"
+              << "  " << YELLOW << "--bin2dec ou -d" << RESET << "   Converte binário para decimal\n"
               << "  " << YELLOW << "--help" << RESET   << "     Mostra esta tela de ajuda\n\n";
 
     std::cout << GREEN << "Exemplos:\n" << RESET
@@ -30,12 +30,18 @@ void _help() {
     std::cout << CYAN << "====================================\n" << RESET;
 }
 
-void dec2bin(const int & number) {
-    std::cout << "D  2  B: " << number << '\n';  // Testando
+void dec2bin(int number) {
+    //Versão recursiva
+    if (number == 0) {
+        return;
+    }
+    dec2bin(number/2);
+    std::cout << number % 2;
 }
 
-void bin2dec(const int & number) {
+int bin2dec(int number) {
     std::cout << "B  2  D: " << number << '\n';  // Testando
+    return number;
 }
 
 void _start(int argc, char** argv) {
@@ -60,6 +66,7 @@ void _start(int argc, char** argv) {
 
         if (param == "--dec2bin" || param == "-b") {
             dec2bin(number);
+            std::cout << '\n';
         } else if (param == "--bin2dec" || param == "-d") {
             bin2dec(number);
         } else {
