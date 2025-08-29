@@ -1,16 +1,71 @@
 #include "project.h"
 
-void _help() {
-    std::cout << "Uso: " <<
-                 "--dec2bin Para converter decimal para binário";
-                 "--bin2dec Para converter binário para decimal";
+#include <iostream>
 
+void _help() {
+
+    const std::string RED    = "\033[31m";
+    const std::string GREEN  = "\033[32m";
+    const std::string YELLOW = "\033[33m";
+    const std::string CYAN   = "\033[36m";
+    const std::string RESET  = "\033[0m";
+
+    std::cout << CYAN << "============================================\n";
+    std::cout << "         Conversor Decimal ⇄ Binário\n";
+    std::cout << "====================================================\n" << RESET;
+
+    std::cout << GREEN << "Uso:\n" << RESET
+              << "  ./a.out [--parametros] [numero]\n\n";
+
+    std::cout << GREEN << "Parâmetros:\n" << RESET
+              << "  " << YELLOW << "--dec2bin" << RESET << "   Converte decimal para binário\n"
+              << "  " << YELLOW << "--bin2dec" << RESET << "   Converte binário para decimal\n"
+              << "  " << YELLOW << "--help" << RESET   << "     Mostra esta tela de ajuda\n\n";
+
+    std::cout << GREEN << "Exemplos:\n" << RESET
+              << "  " << CYAN << "./a.out --dec2bin 25" << RESET    << "    # Saída: 11001\n"
+              << "  " << CYAN << "./a.out --bin2dec 11001" << RESET << "    # Saída: 25\n"
+              << "  " << CYAN << "./a.out --help" << RESET           << "           # Mostra esta tela de ajuda\n\n";
+
+    std::cout << CYAN << "====================================\n" << RESET;
+}
+
+void dec2bin(const int & number) {
+    std::cout << "D  2  B: " << number << '\n';  // Testando
+}
+
+void bin2dec(const int & number) {
+    std::cout << "B  2  D: " << number << '\n';  // Testando
 }
 
 void _start(int argc, char** argv) {
-    if (argc > 2) {
-        std::cout << "Chama as funções de conversão" << '\n';
+
+    if (argc == 2) {
+        std::string param = argv[1];
+        if (param == "--help") {
+            _help();
+        } else if (param == "--dec2bin") {
+            std::cout << "Use os parâmetros --dec2bin ou -b seguido de um número decimal inteiro para convertê-lo em binário\n";
+            std::cout << "Exemplo: ./a.out --dec2bin 100 (Converte 100 para binário).\n";
+        } else if (param == "--bin2dec") {
+            std::cout << "Use os parâmetros --bin2dec ou -d seguido de um número binário para convertê-lo em decimal\n";
+            std::cout << "Exemplo: ./a.out --bin2dec 1111 (Converte 1111 para decimal).\n";
+        } else {
+            std::cout << "Parâmetro inválido. Use --help para mais informações.\n";
+        }
+    }
+    else if (argc >= 2) {
+        std::string param = argv[1];
+        int number        = std::stoi(argv[2]);
+
+        if (param == "--dec2bin" || param == "-b") {
+            dec2bin(number);
+        } else if (param == "--bin2dec" || param == "-d") {
+            bin2dec(number);
+        } else {
+            std::cout << "Parâmetros inválidos. Use --help para mais informações.\n";
+        }
     } else {
-        _help();
+        std::cout << "Quantidade de parâmetros inválida. Use o parâmetro --help para mais informações." << '\n';
     }
 }

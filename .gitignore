@@ -1,0 +1,21 @@
+# Executáveis
+a.out
+*.exe
+
+# Arquivos objeto
+*.o
+*.obj
+
+# Arquivos temporários do compilador / IDE
+*.gch
+*.pch
+
+# Diretórios do sistema/IDE (Linux)
+*.swp
+*.swo
+*.out
+*.log
+
+# CLion
+cmake-build-*/
+.idea/

@@ -38,6 +38,9 @@ cd conversor-decimal-binario
 ### Exemplos
 Em breve.
 
+## Quadro Kanban
+https://github.com/users/GuilhermeAlvesTeixeira/projects/4
+
 ## Requisitos Funcionais
  Código    | Descrição                                                 | Prioridade | Estado | 
 |-----------|-----------------------------------------------------------|------------|-----------|
