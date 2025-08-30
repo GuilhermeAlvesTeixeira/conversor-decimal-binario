@@ -63,39 +63,46 @@ bool check_number(const std::string& s) {
 }
 
 void _start(int argc, char** argv) {
+    if (argc < 2) {
+        std::cout << "Quantidade de parâmetros inválida. Use --help para mais informações.\n";
+        return;
+    }
+
+    std::string param = argv[1];
 
     if (argc == 2) {
-        std::string param = argv[1];
-
         if (param == "--help") {
             _help();
-        } else if (param == "--dec2bin") {
-            std::cout << "Use os parâmetros --dec2bin ou -b seguido de um número decimal inteiro para convertê-lo em binário\n";
-            std::cout << "Exemplo: ./a.out --dec2bin 100 (Converte 100 para binário).\n";
-        } else if (param == "--bin2dec") {
-            std::cout << "Use os parâmetros --bin2dec ou -d seguido de um número binário para convertê-lo em decimal\n";
-            std::cout << "Exemplo: ./a.out --bin2dec 1111 (Converte 1111 para decimal).\n";
+        } else if (param == "--dec2bin" || param == "-b") {
+            std::cout << "Use os parâmetros --dec2bin ou -b seguido de um número decimal inteiro para convertê-lo em binário.\n";
+        } else if (param == "--bin2dec" || param == "-d") {
+            std::cout << "Use os parâmetros --bin2dec ou -d seguido de um número binário para convertê-lo em decimal.\n";
         } else {
             std::cout << "Parâmetro inválido. Use --help para mais informações.\n";
         }
+        return;
     }
-    else if (argc >= 2) {
-        std::string param = argv[1];
-        int number        = std::stoi(argv[2]);
 
-        if (!check_number(number)) {
-            return;
-        }
+    std::string number_str = argv[2];
+    int number;
 
-        if (param == "--dec2bin" || param == "-b") {
+    try {
+        number = std::stoi(number_str);
+    } catch (const std::exception& e) {
+        std::cout << "Erro: o valor '" << number_str << "' não é um número válido.\n";
+        return;
+    }
+
+    if (param == "--dec2bin" || param == "-b") {
+        if (number == 0) {
+            std::cout << "0\n";
+        } else {
             dec2bin(number);
             std::cout << '\n';
-        } else if (param == "--bin2dec" || param == "-d") {
-            std::cout << bin2dec(number) << '\n';
-        } else {
-            std::cout << "Parâmetros inválidos. Use --help para mais informações.\n";
         }
+    } else if (param == "--bin2dec" || param == "-d") {
+        std::cout << bin2dec(number) << '\n';
     } else {
-        std::cout << "Quantidade de parâmetros inválida. Use o parâmetro --help para mais informações." << '\n';
+        std::cout << "Parâmetros inválidos. Use --help para mais informações.\n";
     }
 }
