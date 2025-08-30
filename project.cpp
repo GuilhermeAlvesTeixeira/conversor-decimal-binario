@@ -1,6 +1,8 @@
 #include "project.h"
 
+#include <cstring>
 #include <iostream>
+#include <bits/stl_algo.h>
 
 void _help() {
 
@@ -40,14 +42,31 @@ void dec2bin(int number) {
 }
 
 int bin2dec(int number) {
-    std::cout << "B  2  D: " << number << '\n';  // Testando
-    return number;
+    int ultimo_digito = {0} , num_dec = {0}, base = {1};
+
+    while (number) {
+        ultimo_digito = number % 10;
+        number = number / 10;
+        num_dec += ultimo_digito * base;
+        base = base * 2;
+    }
+
+    return num_dec;
+}
+
+bool check_number(const std::string& s) {
+    if (s.empty()) return false;
+    for (char c : s) {
+        if (!isdigit(c)) return false;
+    }
+    return true;
 }
 
 void _start(int argc, char** argv) {
 
     if (argc == 2) {
         std::string param = argv[1];
+
         if (param == "--help") {
             _help();
         } else if (param == "--dec2bin") {
@@ -64,11 +83,15 @@ void _start(int argc, char** argv) {
         std::string param = argv[1];
         int number        = std::stoi(argv[2]);
 
+        if (!check_number(number)) {
+            return;
+        }
+
         if (param == "--dec2bin" || param == "-b") {
             dec2bin(number);
             std::cout << '\n';
         } else if (param == "--bin2dec" || param == "-d") {
-            bin2dec(number);
+            std::cout << bin2dec(number) << '\n';
         } else {
             std::cout << "Parâmetros inválidos. Use --help para mais informações.\n";
         }
